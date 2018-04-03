@@ -22,9 +22,9 @@ let generate = command (CommanderArguments.outputDir, CommanderArguments.inputFi
 }
 
 // Debug
-//try generate.run(["/Users/dsk/org/daisuke310vvv/ContractSwift", "/Users/dsk/org/daisuke310vvv/ContractSwift/abi.json"])
+try generate.run(["/Users/dsk/org/daisuke310vvv/ContractSwift", "/Users/dsk/org/daisuke310vvv/ContractSwift/abi.json"])
 
-let group = Group()
-group.addCommand("generate", "Generates Contract.generated.swift", generate)
-group.run(ContractSwift.version)
+//let group = Group()
+//group.addCommand("generate", "Generates Contract.generated.swift", generate)
+//group.run(ContractSwift.version)
 
