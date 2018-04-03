@@ -10,7 +10,7 @@ import ContractSwiftCore
 import Commander
 
 struct CommanderArguments {
-    static let outputDir = Argument<String>("outputDir", description: "Output directory for the 'Contract.swift' file.")
+    static let outputDir = Argument<String>("outputDir", description: "Output directory for the 'ContractSwift' file.")
     static let inputFile = Argument<String>("inputFile", description: "Input file path(abi.json)")
 }
 
