@@ -1,4 +1,9 @@
 .DS_Store
-/.build
-/Packages
-/*.xcodeproj
+xcuserdata
+*.xccheckout
+Contract.generated.swift
+Pods
+ContractSwift.xcarchive
+ContractSwift.xcodeproj
+.build
+build
