@@ -8,6 +8,6 @@
 import Foundation
 
 struct ContractSwift {
-    static let version = "0.1.0"
+    static let version = "0.1.2"
     static let resourceFileName = "Contract.generated.swift"
 }
