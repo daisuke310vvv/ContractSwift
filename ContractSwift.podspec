@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.swift_version = "4.1"
 
   s.requires_arc   = true
-  s.preserve_paths = "Sources/CryptoSwift"
+  s.preserve_paths = "*"
 
   s.social_media_url = "http://twitter.com/st_dsk"
 
