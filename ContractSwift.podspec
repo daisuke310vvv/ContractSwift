@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/st_dsk"
   s.platform     = :ios, "10.0"
   s.swift_version = "4.1"
-  s.source       = { :http => "https://github.com/daisuke310vvv/ContractSwift/releases/download/0.1.0/contractswift.zip" }
+  s.source       = { :http => "https://github.com/daisuke310vvv/ContractSwift/releases/download/0.1.0/contractswift.zip", :flatten => true }
   s.requires_arc = true
   s.preserve_paths = "*"
 end
