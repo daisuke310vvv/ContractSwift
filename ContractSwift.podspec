@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
   s.swift_version = "4.1"
   s.source       = { :http => "https://github.com/daisuke310vvv/ContractSwift/releases/download/0.1.0/contractswift-0.1.0.zip" }
   s.requires_arc = true
-  s.preserve_paths = "Sources/**/*.swift"
+  s.preserve_paths = "Sources/ContractSwift"
 end
