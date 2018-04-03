@@ -66,7 +66,7 @@ struct TxDataStringFunctionPrinter: SwiftEnumFunctionPriter {
 }
 
 struct Sha3FunctionPrinter: SwiftEnumFunctionPriter {
-    var name: String { get { return "sha3(str: String) -> String" } }
+    var name: String { get { return "sha3(str: String) -> Data" } }
     
     func print() -> String {
         return [

@@ -12,7 +12,6 @@ struct ImportPrinter: Printable {
         return [
             "import Foundation",
             "import CryptoSwift",
-            "import BInt"
             ].joined(separator: "\n")
     }
 }
