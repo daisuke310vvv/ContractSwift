@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/st_dsk"
   s.platform     = :ios, "10.0"
   s.swift_version = "4.1"
-  s.source       = { :git => "https://github.com/daisuke310vvv/ContractSwift.git", :tag => "#{s.version}" }
-  s.source_files = "Sources/**/*.swift"
+  s.source       = { :http => "#{s.homepage}/releases/download/#{s.version}/contractswift-#{s.version}.zip" }
   s.requires_arc = true
+  s.preserve_paths = "ContractSwift"
 end

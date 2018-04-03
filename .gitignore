@@ -7,3 +7,4 @@ ContractSwift.xcarchive
 ContractSwift.xcodeproj
 .build
 build
+*.zip
