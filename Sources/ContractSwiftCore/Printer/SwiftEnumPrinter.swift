@@ -16,7 +16,6 @@ struct SwiftEnumPrinter {
         self.name = name
         self.cases = cases
         self.functionPrinters = functionPrinters ?? []
-        
     }
     
     func print() -> String {

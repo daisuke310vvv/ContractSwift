@@ -7,12 +7,10 @@
 
 import Foundation
 
-//Contract.Function.transfer(_to: "0x...", _value: BInt("1000000000000000000")).txDataString()
-
 public struct ContractSwiftCore {
     static public func run(config: Config) throws {
-        print("-> \(config.outputURL.absoluteString)")
         print("input file url -> \(config.inputFileURL.absoluteString)")
+        print("output file url -> \(config.outputURL.absoluteString)")
 
         do {
             let inputFileData = try Data(contentsOf: config.inputFileURL)

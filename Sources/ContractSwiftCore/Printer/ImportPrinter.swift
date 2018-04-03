@@ -11,6 +11,7 @@ struct ImportPrinter: Printable {
     func print() -> String {
         return [
             "import Foundation",
+            "import ContractSwift_Library",
             "import CryptoSwift",
             ].joined(separator: "\n")
     }

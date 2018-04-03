@@ -7,7 +7,6 @@ let package = Package(
     name: "ContractSwift",
     dependencies: [
         .package(url: "https://github.com/kylef/Commander.git", from: "0.8.0"),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "0.8.0"),
     ],
     targets: [
         .target(
@@ -15,7 +14,7 @@ let package = Package(
             dependencies: ["ContractSwiftCore"]),
         .target(
             name: "ContractSwiftCore",
-            dependencies: ["Commander", "CryptoSwift"]),
+            dependencies: ["Commander"]),
         .testTarget(
             name: "ContractSwiftTests",
             dependencies: ["ContractSwiftCore"])
