@@ -6,15 +6,39 @@
 //
 
 import Foundation
+import CryptoSwift
 
-public final class ContractSwift {
-    private let arguments: [String]
-    
-    public init(arguments: [String] = [""]) {
-        self.arguments = arguments
-    }
-    
-    public func run() throws {
-        print("hello")
+//Contract.Function.transfer(_to: "0x...", _value: BInt("1000000000000000000")).txDataString()
+
+public struct ContractSwiftCore {
+    static public func run(config: Config) throws {
+        print("-> \(config.outputURL.absoluteString)")
+        print("input file url -> \(config.inputFileURL.absoluteString)")
+
+        do {
+            let inputFileData = try Data(contentsOf: config.inputFileURL)
+            guard let json = try JSONSerialization.jsonObject(with: inputFileData, options: []) as? [[String: Any]] else {
+                print("could not decode to json.")
+                return
+            }
+            let contract = Contract(json: json)
+            let contractPrinter = ContractPrinter(name: "Contract", contract: contract)
+            
+            let printables: [Printable] = [FileHeaderPrinter(), ImportPrinter(), contractPrinter]
+            
+            let fileContents = printables
+                .flatMap { $0.print() }
+                .joined(separator: "\n\n")
+                + "\n"
+            do {
+                try fileContents.write(to: config.outputURL, atomically: true, encoding: .utf8)
+            } catch {
+                print(error)
+            }
+
+        } catch {
+            print(error.localizedDescription)
+        }
+
     }
 }
