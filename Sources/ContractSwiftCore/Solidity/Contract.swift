@@ -8,9 +8,11 @@
 import Foundation
 
 struct Contract: Printable {
+    let name: String
     var functions: [Function]
     
-    init(json: [[String: Any]]) {
+    init(name: String, json: [[String: Any]]) {
+        self.name = name
         functions = json
             .filter { ($0["type"] as! String) == "function" }
             .compactMap { Function($0) }

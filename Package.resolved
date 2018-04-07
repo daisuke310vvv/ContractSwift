@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "CryptoSwift",
-        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "package": "PathKit",
+        "repositoryURL": "https://github.com/PoissonBallon/PathKit.git",
         "state": {
-          "branch": null,
-          "revision": "526d5e91569b30857d8def9ea22ad7265b70d238",
-          "version": "0.9.0"
+          "branch": "master",
+          "revision": "a73cc01fe5d5178c5d3154ab454bd02fd971fb54",
+          "version": null
         }
       },
       {
