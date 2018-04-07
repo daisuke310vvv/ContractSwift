@@ -9,33 +9,24 @@ import Foundation
 
 public struct ContractSwiftCore {
     static public func run(config: Config) throws {
-        print("input file url -> \(config.inputFileURL.absoluteString)")
+        print("input file urls -> \(config.inputURLs.map { $0.absoluteString })")
         print("output file url -> \(config.outputURL.absoluteString)")
-
+        
         do {
-            let inputFileData = try Data(contentsOf: config.inputFileURL)
-            guard let json = try JSONSerialization.jsonObject(with: inputFileData, options: []) as? [[String: Any]] else {
-                print("could not decode to json.")
-                return
-            }
-            let contract = Contract(json: json)
-            let contractPrinter = ContractPrinter(name: "Contract", contract: contract)
+            let contracts = try config.inputURLs.map { try ContractParser.parse(from: $0.absoluteString) }
+            let contractPrinters = contracts.map { ContractPrinter(contract: $0) }
+            let externalContractPrinter = ExternalContractPrinter(contractPrinters: contractPrinters)
             
-            let printables: [Printable] = [FileHeaderPrinter(), ImportPrinter(), contractPrinter]
-            
-            let fileContents = printables
-                .compactMap { $0.print() }
-                .joined(separator: "\n\n")
-                + "\n"
+            let printers: [Printable] = [FileHeaderPrinter(), ImportPrinter(), externalContractPrinter]
+            let fileContents = printers.compactMap { $0.print() }.joined(separator: "\n\n") + "\n"
             do {
                 try fileContents.write(to: config.outputURL, atomically: true, encoding: .utf8)
+                print("Created! -> \(config.outputURL.absoluteString)")
             } catch {
                 print(error)
             }
-
         } catch {
-            print(error.localizedDescription)
+            print(error)
         }
-
     }
 }

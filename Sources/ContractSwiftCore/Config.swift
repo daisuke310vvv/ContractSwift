@@ -8,14 +8,14 @@
 import Foundation
 
 public struct Config {
+    let inputURLs: [URL]
     let outputURL: URL
-    let inputFileURL: URL
-    
+
     public init(
-        outputURL: URL,
-        inputFileURL: URL
+        inputURLs: [URL],
+        outputURL: URL
         ) {
+        self.inputURLs = inputURLs
         self.outputURL = outputURL
-        self.inputFileURL = inputFileURL
     }
 }

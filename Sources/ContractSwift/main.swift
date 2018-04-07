@@ -8,21 +8,26 @@
 import Foundation
 import ContractSwiftCore
 import Commander
+import PathKit
 
-struct CommanderArguments {
-    static let outputDir = Argument<String>("outputDir", description: "Output directory for the 'ContractSwift' file.")
-    static let inputFile = Argument<String>("inputFile", description: "Input file path(abi.json)")
+func inputFilePaths(from pattern: String) -> [String] {
+    return Path.glob(pattern).map { $0.absolute().string }
 }
 
-let generate = command (CommanderArguments.outputDir, CommanderArguments.inputFile) { (outputDir, inputFile) in
+struct CommanderArguments {
+    static let inputDir = Argument<String>("inputDir", description: "Input file path(abi.json)")
+    static let outputDir = Argument<String>("outputDir", description: "Output directory for the 'ContractSwift' file.")
+}
+
+let generate = command (CommanderArguments.inputDir, CommanderArguments.outputDir) { (inputDir, outputDir) in
+    let inputURLs = inputFilePaths(from: inputDir + "/*.json").map { URL(string: $0)! }
     let outputURL = URL(fileURLWithPath: outputDir).appendingPathComponent(ContractSwift.resourceFileName, isDirectory: false)
-    let inputFileURL = URL(fileURLWithPath: inputFile)
-    let config = Config(outputURL: outputURL, inputFileURL: inputFileURL)
+    let config = Config(inputURLs: inputURLs, outputURL: outputURL)
     try ContractSwiftCore.run(config: config)
 }
 
 // Debug
-//try generate.run(["/Users/dsk/org/daisuke310vvv/ContractSwift", "/Users/dsk/org/daisuke310vvv/ContractSwift/abi.json"])
+//try generate.run(["/Users/dsk/org/daisuke310vvv/ContractSwift/abi", "/Users/dsk/org/daisuke310vvv/ContractSwift"])
 
 let group = Group()
 group.addCommand("generate", "Generates Contract.generated.swift", generate)
